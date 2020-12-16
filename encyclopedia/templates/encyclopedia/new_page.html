@@ -1,0 +1,28 @@
+{% extends 'encyclopedia/layout.html' %}
+{% block title %}
+	{% if present %}
+		<h1>Error</h1>
+		<h2>{{ title }} Already Present</h4>
+	{% elif edit %}
+		<h3>Edit</h3>
+	{% else %}
+		<h4>New Entry</h4>
+	{% endif %}
+{% endblock title %}
+{% block body %}
+	{% if present %}
+		<h1>Error</h1>
+		<h2>{{ title }} Already Present</h4>
+	{% elif edit %}
+		<h3>Edit</h3>
+	{% else %}
+		<h4>New Entry</h4>
+	{% endif %}
+	<div class="form-group">
+		<form method="POST" action="{% url 'new_page' %}">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" name="submit">
+		</form>
+	</div>
+{% endblock body %}
